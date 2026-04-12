@@ -30,16 +30,13 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
 .card.red{color:#e74c3c}.card.black{color:#333}
 .card .rank{font-size:15px;line-height:1;width:100%;text-align:left;padding-left:3px}
 .card .suit{font-size:12px;width:100%;text-align:left;padding-left:3px}
-/* 修改点：去掉中间的大花色 */
 .card .center-suit{display:none}
 .card.joker-red{background:linear-gradient(135deg,#fff,#ffe0e0);color:#e74c3c}
 .card.joker-black{background:linear-gradient(135deg,#e8e8e8,#fff);color:#333}
 .card.joker-red .rank,.card.joker-black .rank{font-size:11px;text-align:center;padding:0}
-/* 修改点：分开电脑背面的牌 */
 .card-back-small{width:30px;height:42px;border-radius:3px;background:linear-gradient(135deg,#2255aa,#1a3d7a);border:1.5px solid #3366cc;display:inline-block;margin-left:2px;box-shadow:1px 1px 3px rgba(0,0,0,.3)}
 .card-back-small:first-child{margin-left:0}
 .played-cards{display:flex;flex-wrap:nowrap;justify-content:center;min-height:50px;align-items:center}
-/* 修改点：分开出的牌，不重叠 */
 .played-cards .card{width:42px;height:60px;margin-left:4px;cursor:default}
 .played-cards .card:first-child{margin-left:0}
 .played-cards .card .rank{font-size:12px}
@@ -69,39 +66,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
 .modal h2{color:var(--gold);font-size:22px;margin-bottom:12px;letter-spacing:3px}
 .modal p{color:#ccc;margin-bottom:16px;font-size:14px}
 .modal .btn{margin:4px}
-@keyframes resultWinIn{0%{transform:scale(0) rotate(-20deg);opacity:0}60%{transform:scale(1.3) rotate(5deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
-@keyframes resultLoseIn{0%{transform:translateY(-60px);opacity:0}60%{transform:translateY(10px);opacity:1}100%{transform:translateY(0);opacity:1}}
-@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-.result-overlay{position:absolute;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.result-overlay.win{background:radial-gradient(ellipse at 50% 40%,rgba(60,30,0,.85),rgba(0,0,0,.9))}
-.result-overlay.lose{background:radial-gradient(ellipse at 50% 50%,rgba(40,10,10,.85),rgba(0,0,0,.9))}
-.result-title{font-size:48px;font-weight:900;margin-bottom:8px}
-.result-title.win-text{color:var(--gold);text-shadow:0 0 30px rgba(240,192,64,.6),0 0 60px rgba(240,192,64,.3);animation:resultWinIn .7s cubic-bezier(.34,1.56,.64,1) forwards}
-.result-title.lose-text{color:#e74c3c;text-shadow:0 0 20px rgba(231,76,60,.5);animation:resultLoseIn .6s ease-out forwards}
-.result-sub{font-size:16px;color:#ccc;margin-bottom:6px;animation:resultLoseIn .6s ease-out .2s both}
-.result-score{font-size:20px;font-weight:700;margin-bottom:20px;animation:resultLoseIn .6s ease-out .3s both}
-.result-score.positive{color:var(--gold)}
-.result-score.negative{color:#e74c3c}
-.result-btn{animation:resultLoseIn .6s ease-out .5s both}
-.spring-badge{font-size:26px;font-weight:900;color:#ff6b35;text-shadow:0 0 20px rgba(255,107,53,.5);margin-bottom:8px;animation:resultWinIn .6s cubic-bezier(.34,1.56,.64,1) .3s both}
-.confetti{position:absolute;width:10px;height:10px;border-radius:2px;animation:confettiFall linear forwards;pointer-events:none;z-index:101}
-.bid-info{color:#ffcc00;font-size:15px;font-weight:700;text-shadow:1px 1px 2px rgba(0,0,0,.5)}
-.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.85);color:#fff;padding:10px 28px;border-radius:22px;font-size:14px;z-index:200;pointer-events:none}
-#rulesBtn{position:absolute;top:44px;left:12px;font-size:12px;color:#fff;background:rgba(0,0,0,.4);padding:4px 12px;border-radius:10px;z-index:15;cursor:pointer;border:1px solid rgba(255,255,255,.2);font-family:inherit;font-weight:700}
-#rulesBtn:hover{background:rgba(0,0,0,.6)}
-#rulesModal{position:absolute;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.7)}
-#rulesModal.show{display:flex}
-.rules-box{background:linear-gradient(145deg,#1e3a28,#142a1c);border:2px solid var(--gold);border-radius:16px;width:90%;max-width:520px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden}
-.rules-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid rgba(255,255,255,.1)}
-.rules-header h3{color:var(--gold);font-size:18px;letter-spacing:2px}
-.rules-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1}
-.rules-close:hover{background:rgba(255,255,255,.25)}
-.rules-body{padding:14px 18px 18px;overflow-y:auto;-webkit-overflow-scrolling:touch;font-size:13px;color:#ddd;line-height:1.8}
-.rules-body h4{color:var(--gold);font-size:14px;margin:12px 0 4px;padding-bottom:2px;border-bottom:1px solid rgba(240,192,64,.2)}
-.rules-body h4:first-child{margin-top:0}
-.rules-body p{margin:4px 0}
-.rules-body .indent{padding-left:1em}
-/* 修改点：添加出牌备注样式 */
 .played-label{font-size:11px;color:#ffcc00;margin-bottom:5px;position:absolute;top:-20px;left:0;white-space:nowrap}
 </style>
 </head>
@@ -113,39 +77,16 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
   </div>
   <button id="rulesBtn" onclick="showRules()">规则</button>
   <div class="multiplier" id="multiplier"></div>
-
   <div id="rulesModal">
     <div class="rules-box">
-      <div class="rules-header">
-        <h3>三人斗地主规则</h3>
-        <button class="rules-close" onclick="hideRules()">&times;</button>
-      </div>
+      <div class="rules-header"><h3>三人斗地主规则</h3><button class="rules-close" onclick="hideRules()">&times;</button></div>
       <div class="rules-body">
-        <h4>基本信息</h4>
-        <p>使用一副54张扑克牌（含大小王），3名玩家参与。</p>
-        <p>每人发17张牌，留3张做底牌。</p>
-        <h4>牌点大小</h4>
-        <p>大王 &gt; 小王 &gt; 2 &gt; A &gt; K &gt; Q &gt; J &gt; 10 &gt; 9 &gt; 8 &gt; 7 &gt; 6 &gt; 5 &gt; 4 &gt; 3，不分花色。</p>
-        <h4>叫牌流程</h4>
-        <p>从随机一人开始，逆时针顺序叫分，可选择叫"1分""2分""3分"或不叫。</p>
-        <p>所叫分数必须比已叫的分高。有人叫3分则立即成为地主。</p>
-        <p>若三人均不叫则重新发牌。确定地主后，底牌亮明并发给地主，地主共20张牌。</p>
-        <h4>出牌规则</h4>
-        <p>地主获得首出权，按逆时针方向跟牌。</p>
-        <p>每名玩家可以用更大的同牌型跟牌，或选择"过"（不出）。</p>
-        <p>当其余两家都不出时，由最后出牌的玩家重新出牌。</p>
-        <h4>牌型</h4>
-        <p><b>火箭</b>、<b>炸弹</b>、<b>单牌</b>、<b>对牌</b>、<b>三张</b>、<b>三带一</b>、<b>单顺</b>、<b>双顺</b>、<b>飞机</b>、<b>四带二</b>。</p>
-        <h4>胜负判定</h4>
-        <p>地主先出完牌则地主胜，否则两位农民获胜。</p>
-        <h4>操作说明</h4>
-        <p>点击手牌选中/取消，点击"出牌"打出。</p>
-        <p>"提示"按钮自动推荐可出的牌。</p>
-        <p>右下角 👁 按钮可透视AI手牌（作弊模式）。</p>
+        <h4>基本信息</h4><p>使用一副54张扑克牌（含大小王），3名玩家参与。每人发17张牌，留3张做底牌。</p>
+        <h4>牌点大小</h4><p>大王 > 小王 > 2 > A > K > Q > J > 10 > 9 > 8 > 7 > 6 > 5 > 4 > 3，不分花色。</p>
+        <h4>操作说明</h4><p>点击手牌选中，点击"出牌"打出。"提示"可自动选牌。</p>
       </div>
     </div>
   </div>
-
   <div class="player-area player-left">
     <div class="player-name" id="nameLeft">电脑A</div>
     <div class="card-count" id="countLeft"></div>
@@ -170,48 +111,26 @@ function ensureAudio(){if(!audioCtx){try{audioCtx=new(window.AudioContext||windo
 function playSound(type){
   ensureAudio();if(!audioCtx)return;var t=audioCtx.currentTime;var osc,gain;
   switch(type){
-    case'play':
-      osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);
-      osc.type='square';osc.frequency.setValueAtTime(800,t);osc.frequency.exponentialRampToValueAtTime(400,t+.08);
-      gain.gain.setValueAtTime(.15,t);gain.gain.exponentialRampToValueAtTime(.001,t+.1);osc.start(t);osc.stop(t+.1);
-      break;
-    case'pass':
-      osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);
-      osc.type='sine';osc.frequency.setValueAtTime(200,t);osc.frequency.exponentialRampToValueAtTime(100,t+.15);
-      gain.gain.setValueAtTime(.12,t);gain.gain.exponentialRampToValueAtTime(.001,t+.18);osc.start(t);osc.stop(t+.2);break;
-    case'bomb':
-      osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);
-      osc.type='sawtooth';osc.frequency.setValueAtTime(80,t);osc.frequency.exponentialRampToValueAtTime(30,t+.3);
-      gain.gain.setValueAtTime(.2,t);gain.gain.exponentialRampToValueAtTime(.001,t+.35);osc.start(t);osc.stop(t+.4);break;
-    case'win':
-      [0,.15,.3,.45].forEach(function(dl,idx){var fr=[523,659,784,1047];var o=audioCtx.createOscillator();var g=audioCtx.createGain();
-      o.connect(g);g.connect(audioCtx.destination);o.type='triangle';o.frequency.setValueAtTime(fr[idx],t+dl);
-      g.gain.setValueAtTime(0,t+dl);g.gain.linearRampToValueAtTime(.15,t+dl+.05);g.gain.exponentialRampToValueAtTime(.001,t+dl+.4);
-      o.start(t+dl);o.stop(t+dl+.4);});break;
-    case'lose':
-      [0,.2].forEach(function(dl,idx){var fr=[400,250];var o=audioCtx.createOscillator();var g=audioCtx.createGain();
-      o.connect(g);g.connect(audioCtx.destination);o.type='sawtooth';o.frequency.setValueAtTime(fr[idx],t+dl);
-      g.gain.setValueAtTime(.1,t+dl);g.gain.exponentialRampToValueAtTime(.001,t+dl+.5);o.start(t+dl);o.stop(t+dl+.5);});break;
-    case'bid':
-      osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);
-      osc.type='sine';osc.frequency.setValueAtTime(660,t);gain.gain.setValueAtTime(.1,t);gain.gain.exponentialRampToValueAtTime(.001,t+.15);
-      osc.start(t);osc.stop(t+.15);break;
-    case'select':
-      osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);
-      osc.type='sine';osc.frequency.setValueAtTime(1200,t);gain.gain.setValueAtTime(.06,t);gain.gain.exponentialRampToValueAtTime(.001,t+.05);
-      osc.start(t);osc.stop(t+.06);break;
+    case'play':osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);osc.type='square';osc.frequency.setValueAtTime(800,t);osc.frequency.exponentialRampToValueAtTime(400,t+.08);gain.gain.setValueAtTime(.15,t);gain.gain.exponentialRampToValueAtTime(.001,t+.1);osc.start(t);osc.stop(t+.1);break;
+    case'pass':osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);osc.type='sine';osc.frequency.setValueAtTime(200,t);osc.frequency.exponentialRampToValueAtTime(100,t+.15);gain.gain.setValueAtTime(.12,t);gain.gain.exponentialRampToValueAtTime(.001,t+.18);osc.start(t);osc.stop(t+.2);break;
+    case'bomb':osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);osc.type='sawtooth';osc.frequency.setValueAtTime(80,t);osc.frequency.exponentialRampToValueAtTime(30,t+.3);gain.gain.setValueAtTime(.2,t);gain.gain.exponentialRampToValueAtTime(.001,t+.35);osc.start(t);osc.stop(t+.4);break;
+    case'bid':osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);osc.type='sine';osc.frequency.setValueAtTime(660,t);gain.gain.setValueAtTime(.1,t);gain.gain.exponentialRampToValueAtTime(.001,t+.15);osc.start(t);osc.stop(t+.15);break;
+    case'select':osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);osc.type='sine';osc.frequency.setValueAtTime(1200,t);gain.gain.setValueAtTime(.06,t);gain.gain.exponentialRampToValueAtTime(.001,t+.05);osc.start(t);osc.stop(t+.06);break;
   }
 }
 var RANKS=['3','4','5','6','7','8','9','10','J','Q','K','A','2'];
 var RV={};for(var i=0;i<RANKS.length;i++)RV[RANKS[i]]=i+3;RV['SJ']=16;RV['BJ']=17;
 var SUITS=['\u2660','\u2665','\u2666','\u2663'];
 var SC={'\u2660':'black','\u2665':'red','\u2666':'red','\u2663':'black'};
-var G={phase:'idle',deck:[],hands:[[],[],[]],dizhuCards:[],dizhuIdx:-1,currentPlayer:0,lastPlay:null,lastPlayPlayer:-1,passCount:0,score:0,baseBid:0,bombCount:0,spring:false,antiSpring:false,bidder:-1,bidValue:0,bidTurn:0,cheat:false,playedCounts:[0,0,0],hintIdx:-1,hintList:null};
+/* 策略实现：G.history 新增记牌器功能 */
+var G={phase:'idle',deck:[],hands:[[],[],[]],dizhuCards:[],dizhuIdx:-1,currentPlayer:0,lastPlay:null,lastPlayPlayer:-1,passCount:0,score:0,baseBid:0,bombCount:0,spring:false,antiSpring:false,bidder:-1,bidValue:0,bidTurn:0,cheat:false,playedCounts:[0,0,0],hintIdx:-1,hintList:null,history:{}};
+
 function createDeck(){var d=[];for(var r=0;r<RANKS.length;r++)for(var s=0;s<SUITS.length;s++)d.push({rank:RANKS[r],suit:SUITS[s],value:RV[RANKS[r]]});d.push({rank:'\u5C0F\u738B',suit:'',value:16,isJoker:'small'});d.push({rank:'\u5927\u738B',suit:'',value:17,isJoker:'big'});return d}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=0|Math.random()*(i+1);var t=a[i];a[i]=a[j];a[j]=t}}
 function sortHand(h){h.sort(function(a,b){return b.value-a.value||(SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit))})}
 function cardHTML(c,x){if(!x)x='';if(c.isJoker){var cl=c.isJoker==='big'?'joker-red':'joker-black';return'<div class="card '+cl+' '+x+'"><div class="rank">'+c.rank+'</div></div>'}var co=SC[c.suit]||'black';return'<div class="card '+co+' '+x+'"><div class="rank">'+c.rank+'</div><div class="suit">'+c.suit+'</div></div>'}
 function cardBackHTML(n){var s='';for(var i=0;i<Math.min(n,10);i++)s+='<div class="card-back-small"></div>';return s}
+
 function render(){
   var hb=document.getElementById('handBottom'),html='';
   for(var i=0;i<G.hands[0].length;i++){var c=G.hands[0][i],sel=c._selected?'selected':'';
@@ -226,7 +145,6 @@ function render(){
   var m=calcMult();document.getElementById('multiplier').textContent='\u500D\u6570:'+m+'x | \u5E95\u5206:'+G.baseBid;
   document.getElementById('scoreDisplay').textContent='\u79EF\u5206: '+G.score}
 
-// 修改点：支持备注显示
 function showPlayed(pi,cards){
   var id=pi===0?'playedBottom':pi===1?'playedRight':'playedLeft';
   var nid=pi===1?'noteRight':pi===2?'noteLeft':null;
@@ -238,7 +156,6 @@ function showPlayed(pi,cards){
   el.innerHTML=h
 }
 
-// 修改点：支持备注清空
 function clearAllPlayed(){
   document.getElementById('playedBottom').innerHTML='';
   document.getElementById('playedLeft').innerHTML='<div id="noteLeft" class="played-label"></div>';
@@ -246,6 +163,15 @@ function clearAllPlayed(){
 }
 
 function calcMult(){var m=1;for(var i=0;i<G.bombCount;i++)m*=2;if(G.spring||G.antiSpring)m*=2;return m}
+
+/* 策略实现：记牌功能 - 记录每一张被打出的牌 */
+function recordHistory(cards){
+  if(!cards) return;
+  cards.forEach(c => {
+    G.history[c.value] = (G.history[c.value] || 0) + 1;
+  });
+}
+
 function analyzeCards(cards){if(!cards||!cards.length)return null;var n=cards.length;var vs=cards.map(function(c){return c.value}).sort(function(a,b){return a-b});var ct={};for(var i=0;i<vs.length;i++)ct[vs[i]]=(ct[vs[i]]||0)+1;var ks=Object.keys(ct).map(Number).sort(function(a,b){return a-b});
 if(n===2&&vs[0]===16&&vs[1]===17)return{type:'rocket',rank:17,len:2};if(n===4&&ks.length===1)return{type:'bomb',rank:ks[0],len:4};if(n===1)return{type:'single',rank:vs[0],len:1};if(n===2&&ks.length===1&&ct[ks[0]]===2)return{type:'pair',rank:ks[0],len:2};if(n===3&&ks.length===1)return{type:'triple',rank:ks[0],len:3};
 if(n===4&&ks.length===2){for(var k=0;k<ks.length;k++)if(ct[ks[k]]===3)return{type:'triple1',rank:ks[k],len:4}}
@@ -254,45 +180,146 @@ if(n>=5&&ks.length===n){var ok=true;for(var i=1;i<ks.length;i++)if(ks[i]-ks[i-1]
 if(n>=6&&n%2===0){var ap=true;for(var k=0;k<ks.length;k++)if(ct[ks[k]]!==2){ap=false;break}if(ap&&ks.length>=3){var c2=true;for(var i=1;i<ks.length;i++)if(ks[i]-ks[i-1]!==1){c2=false;break}if(c2&&ks[ks.length-1]<=14)return{type:'pairstraight',rank:ks[ks.length-1],len:n}}}
 if(n>=6&&n%3===0){var at=true;for(var k=0;k<ks.length;k++)if(ct[ks[k]]!==3){at=false;break}if(at&&ks.length>=2){var c3=true;for(var i=1;i<ks.length;i++)if(ks[i]-ks[i-1]!==1){c3=false;break}if(c3&&ks[ks.length-1]<=14)return{type:'plane',rank:ks[ks.length-1],len:n,planeLen:ks.length}}}
 return null}
+
 function canBeat(p,l){if(!l)return true;if(p.type==='rocket')return true;if(p.type==='bomb'){if(l.type==='rocket')return false;if(l.type==='bomb')return p.rank>l.rank;return true}if(l.type==='rocket'||l.type==='bomb')return false;if(p.type!==l.type||p.len!==l.len)return false;return p.rank>l.rank}
 function toggleCard(idx){if(G.phase!=='play'||G.currentPlayer!==0)return;G.hands[0][idx]._selected=!G.hands[0][idx]._selected;playSound('select');render()}
 function toggleCheat(){G.cheat=!G.cheat;var b=document.getElementById('cheatBtn');if(G.cheat)b.classList.add('active');else b.classList.remove('active');render()}
-function startGame(){G.phase='bid';G.deck=createDeck();shuffle(G.deck);G.hands=[[],[],[]];G.dizhuCards=[];G.dizhuIdx=-1;G.lastPlay=null;G.lastPlayPlayer=-1;G.passCount=0;G.baseBid=0;G.bombCount=0;G.spring=false;G.antiSpring=false;G.playedCounts=[0,0,0];
+
+function startGame(){G.phase='bid';G.deck=createDeck();shuffle(G.deck);G.hands=[[],[],[]];G.dizhuCards=[];G.dizhuIdx=-1;G.lastPlay=null;G.lastPlayPlayer=-1;G.passCount=0;G.baseBid=0;G.bombCount=0;G.spring=false;G.antiSpring=false;G.playedCounts=[0,0,0];G.history={}; /* 策略实现：开局清空记牌器 */
 for(var i=0;i<51;i++)G.hands[i%3].push(G.deck[i]);G.dizhuCards=[G.deck[51],G.deck[52],G.deck[53]];for(var i=0;i<3;i++)sortHand(G.hands[i]);
 clearAllPlayed();document.getElementById('centerArea').innerHTML='';document.getElementById('btnRow').innerHTML='';G.bidder=Math.floor(Math.random()*3);G.bidValue=0;G.bidTurn=0;render();doBidding()}
+
 function doBidding(){if(G.bidTurn>=3){if(G.bidValue===0){document.getElementById('centerArea').innerHTML='<div class="bid-info">\u6CA1\u4EBA\u53EB\u5206\uFF0C\u91CD\u65B0\u53D1\u724C...</div>';setTimeout(startGame,1500);return}finalizeBid();return}
 var cp=(G.bidder+G.bidTurn)%3;if(cp===0)showBidButtons();else setTimeout(function(){var ab=aiBidDec(cp);playSound('bid');if(ab>G.bidValue){G.bidValue=ab;G.dizhuIdx=cp;document.getElementById('centerArea').innerHTML='<div class="bid-info">'+(cp===1?'\u7535\u8111B':'\u7535\u8111A')+' \u53EB '+ab+' \u5206</div>'}else{document.getElementById('centerArea').innerHTML='<div class="bid-info">'+(cp===1?'\u7535\u8111B':'\u7535\u8111A')+' \u4E0D\u53EB</div>'}G.bidTurn++;setTimeout(doBidding,800)},600)}
 function showBidButtons(){var h='',mn=G.bidValue+1;if(mn<=1)h+='<button class="btn btn-primary" onclick="humanBid(1)">1\u5206</button>';if(mn<=2)h+='<button class="btn btn-primary" onclick="humanBid(2)">2\u5206</button>';if(mn<=3)h+='<button class="btn btn-primary" onclick="humanBid(3)">3\u5206</button>';h+='<button class="btn btn-secondary" onclick="humanBid(0)">\u4E0D\u53EB</button>';document.getElementById('btnRow').innerHTML=h}
 function humanBid(v){document.getElementById('btnRow').innerHTML='';playSound('bid');if(v>0){G.bidValue=v;G.dizhuIdx=0;document.getElementById('centerArea').innerHTML='<div class="bid-info">\u4F60\u53EB\u4E86 '+v+' \u5206</div>';if(v===3){G.bidTurn=3;setTimeout(doBidding,500);return}}else document.getElementById('centerArea').innerHTML='<div class="bid-info">\u4F60\u4E0D\u53EB</div>';G.bidTurn++;setTimeout(doBidding,500)}
 function aiBidDec(pi){var h=G.hands[pi],sc=0,ct={};for(var i=0;i<h.length;i++){var v=h[i].value;ct[v]=(ct[v]||0)+1}var vs=Object.keys(ct).map(Number);var bc=0;for(var i=0;i<vs.length;i++)if(ct[vs[i]]===4)bc++;var sJ=false,bJ=false;for(var i=0;i<h.length;i++){if(h[i].value===16)sJ=true;if(h[i].value===17)bJ=true;if(h[i].value===15)sc+=3;if(h[i].value===14)sc+=2}if(sJ&&bJ)sc+=8;else if(bJ)sc+=4;else if(sJ)sc+=2;sc+=bc*6;var th=G.bidValue===0?6:G.bidValue===1?8:10;if(sc>=th){var bid=G.bidValue+1;if(sc>=14)bid=3;else if(sc>=10)bid=Math.max(bid,2);return Math.min(bid,3)}return 0}
-function finalizeBid(){G.baseBid=G.bidValue;for(var i=0;i<G.dizhuCards.length;i++)G.hands[G.dizhuIdx].push(G.dizhuCards[i]);sortHand(G.hands[G.dizhuIdx]);
-G.phase='play';G.currentPlayer=G.dizhuIdx;G.lastPlay=null;G.lastPlayPlayer=-1;G.passCount=0;render();
-setTimeout(function(){clearAllPlayed();document.getElementById('centerArea').innerHTML='';if(G.currentPlayer===0)showPlayBtns();else aiTurn()},2000)}
+function finalizeBid(){G.baseBid=G.bidValue;for(var i=0;i<G.dizhuCards.length;i++)G.hands[G.dizhuIdx].push(G.dizhuCards[i]);sortHand(G.hands[G.dizhuIdx]);G.phase='play';G.currentPlayer=G.dizhuIdx;G.lastPlay=null;G.lastPlayPlayer=-1;G.passCount=0;render();setTimeout(function(){clearAllPlayed();document.getElementById('centerArea').innerHTML='';if(G.currentPlayer===0)showPlayBtns();else aiTurn()},2000)}
 function showPlayBtns(){G.hintList=null;G.hintIdx=-1;var free=!G.lastPlay||G.lastPlayPlayer===0;var h='<button class="btn btn-secondary" onclick="hintCards()">\u63D0\u793A</button>';if(!free)h+='<button class="btn btn-secondary" onclick="humanPass()">\u8FC7</button>';h+='<button class="btn btn-primary" onclick="humanPlay()">\u51FA\u724C</button>';document.getElementById('btnRow').innerHTML=h}
-function humanPlay(){G.hintList=null;G.hintIdx=-1;var sel=[];for(var i=0;i<G.hands[0].length;i++)if(G.hands[0][i]._selected)sel.push(G.hands[0][i]);if(!sel.length)return;var play=analyzeCards(sel);if(!play){showToast('\u65E0\u6548\u724C\u578B');return}var free=!G.lastPlay||G.lastPlayPlayer===0;if(!free&&!canBeat(play,G.lastPlay)){showToast('\u7BA1\u4E0D\u4E0A');return}
-if(play.type==='bomb'||play.type==='rocket'){G.bombCount++;playSound('bomb')}else playSound('play');G.lastPlay=play;G.lastPlayPlayer=0;G.passCount=0;G.playedCounts[0]++;
-var nh=[];for(var i=0;i<G.hands[0].length;i++)if(!G.hands[0][i]._selected)nh.push(G.hands[0][i]);G.hands[0]=nh;
-if(free)clearAllPlayed();showPlayed(0,sel);document.getElementById('btnRow').innerHTML='';render();if(!G.hands[0].length){endRound(0);return}G.currentPlayer=1;setTimeout(aiTurn,800)}
+
+function humanPlay(){
+  G.hintList=null;G.hintIdx=-1;var sel=[];for(var i=0;i<G.hands[0].length;i++)if(G.hands[0][i]._selected)sel.push(G.hands[0][i]);if(!sel.length)return;var play=analyzeCards(sel);if(!play){showToast('\u65E0\u6548\u724C\u578B');return}var free=!G.lastPlay||G.lastPlayPlayer===0;if(!free&&!canBeat(play,G.lastPlay)){showToast('\u7BA1\u4E0D\u4E0A');return}
+  if(play.type==='bomb'||play.type==='rocket'){G.bombCount++;playSound('bomb')}else playSound('play');
+  recordHistory(sel); /* 策略实现：记牌 - 记录人类出的牌 */
+  G.lastPlay=play;G.lastPlayPlayer=0;G.passCount=0;G.playedCounts[0]++;
+  var nh=[];for(var i=0;i<G.hands[0].length;i++)if(!G.hands[0][i]._selected)nh.push(G.hands[0][i]);G.hands[0]=nh;
+  if(free)clearAllPlayed();showPlayed(0,sel);document.getElementById('btnRow').innerHTML='';render();if(!G.hands[0].length){endRound(0);return}G.currentPlayer=1;setTimeout(aiTurn,800)}
+
 function humanPass(){G.hintList=null;G.hintIdx=-1;playSound('pass');G.passCount++;showPlayed(0,null);document.getElementById('btnRow').innerHTML='';if(G.passCount>=2){G.lastPlay=null;G.lastPlayPlayer=-1;G.passCount=0}G.currentPlayer=1;setTimeout(aiTurn,600)}
+
 function hintCards(){
   var free=!G.lastPlay||G.lastPlayPlayer===0;
-  if(!G.hintList){
-    var cs=findValid(G.hands[0],free?null:G.lastPlay);
-    if(!cs.length){showToast('\u6CA1\u6709\u80FD\u51FA\u7684\u724C');return}
-    G.hintList=cs;G.hintIdx=0;
-  } else {G.hintIdx=(G.hintIdx+1)%G.hintList.length;}
+  if(!G.hintList){var cs=findValid(G.hands[0],free?null:G.lastPlay);if(!cs.length){showToast('\u6CA1\u6709\u80FD\u51FA\u7684\u724C');return}G.hintList=cs;G.hintIdx=0;} else {G.hintIdx=(G.hintIdx+1)%G.hintList.length;}
   for(var i=0;i<G.hands[0].length;i++) G.hands[0][i]._selected=false;
-  var pick=G.hintList[G.hintIdx];
-  for(var i=0;i<pick.length;i++)
-    for(var j=0;j<G.hands[0].length;j++)
-      if(G.hands[0][j]===pick[i]){G.hands[0][j]._selected=true;break}
-  playSound('select');render()
+  var pick=G.hintList[G.hintIdx];for(var i=0;i<pick.length;i++)for(var j=0;j<G.hands[0].length;j++)if(G.hands[0][j]===pick[i]){G.hands[0][j]._selected=true;break}
+  playSound('select');render()}
+
+/* 策略实现：重写 AI 出牌决策逻辑 */
+function aiChoose(pi, cs, free) {
+  var hLen = G.hands[pi].length;
+  var isDizhu = (pi === G.dizhuIdx);
+  var scored = [];
+  
+  // 记牌辅助：找出当前场上还没出过的最大单牌值
+  var maxRemain = 17;
+  for(var v=17; v>=3; v--) {
+    var limit = (v>=16) ? 1 : 4;
+    if((G.history[v] || 0) < limit) { maxRemain = v; break; }
+  }
+
+  for (var i = 0; i < cs.length; i++) {
+    var play = analyzeCards(cs[i]);
+    var sc = 0;
+    var isBomb = (play.type === 'bomb' || play.type === 'rocket');
+
+    // 1. [高效减牌] 组合牌基础加分
+    sc += cs[i].length * 10;
+    
+    if (free) {
+      // --- 先手空打策略 ---
+      if (hLen > 5) {
+        // [大牌制动] 手牌多时惩罚单出王、2、A
+        if (play.type === 'single') {
+          if (play.rank >= 16) sc -= 400; // 王
+          else if (play.rank === 15) sc -= 250; // 2
+          else if (play.rank === 14) sc -= 150; // A
+          else sc -= (play.rank - 3) * 5; // [单牌策略] 从小到大出
+        }
+        // [战略储备] 手牌多时不主动交炸弹
+        if (isBomb) sc -= 500;
+        // 优先出顺子、连对
+        if (play.type.includes('straight') || play.type.includes('plane')) sc += 50;
+      } else if (hLen <= 3) {
+        // [绝地反击] 手牌少时激进出牌
+        sc += 200;
+        if (play.rank === maxRemain) sc += 100; // 有大牌直接打出封死
+      }
+    } else {
+      // --- 跟牌压制策略 ---
+      var lastRank = G.lastPlay.rank;
+      // [性价比评估] 不用大牌压小牌
+      sc -= (play.rank - lastRank) * 10;
+
+      if (isBomb) {
+        // [炸弹策略] 检查是否值得炸
+        var opponentMinHand = 20;
+        for(var p=0; p<3; p++) if(p!==pi) opponentMinHand = Math.min(opponentMinHand, G.hands[p].length);
+
+        if (isDizhu) {
+          // 地主：农民快赢了才炸
+          if (opponentMinHand <= 4) sc += 300; else sc -= 400;
+        } else {
+          // 农民：地主快赢了才炸，且不炸队友
+          if (G.lastPlayPlayer !== G.dizhuIdx) {
+            sc -= 600; // [战友互助] 绝不炸队友
+          } else if (opponentMinHand <= 4) {
+            sc += 300;
+          } else {
+            sc -= 300;
+          }
+        }
+      } else {
+        // [战友互助] 农民不压队友的牌
+        if (!isDizhu && G.lastPlayPlayer !== G.dizhuIdx && G.lastPlayPlayer !== -1) {
+          sc -= 200; 
+        }
+      }
+    }
+    scored.push({ cards: cs[i], score: sc });
+  }
+
+  scored.sort((a, b) => b.score - a.score);
+  // [性价比] 差的选择70%概率直接过
+  if (!free && scored.length > 0 && scored[0].score < -50) {
+    if (Math.random() < 0.7) return null;
+  }
+  return scored.length > 0 ? scored[0].cards : null;
 }
-function aiTurn(){if(G.phase!=='play')return;var pi=G.currentPlayer,free=!G.lastPlay||G.lastPlayPlayer===pi;var cs=findValid(G.hands[pi],free?null:G.lastPlay);
-if(!cs.length){G.passCount++;playSound('pass');showPlayed(pi,null);if(G.passCount>=2){G.lastPlay=null;G.lastPlayPlayer=-1;G.passCount=0}G.currentPlayer=(pi+1)%3;render();setTimeout(function(){if(G.currentPlayer===0)showPlayBtns();else aiTurn()},600);return}
-var ch=cs[0];var play=analyzeCards(ch);if(play.type==='bomb'||play.type==='rocket'){G.bombCount++;playSound('bomb')}else playSound('play');
-G.lastPlay=play;G.lastPlayPlayer=pi;G.passCount=0;G.playedCounts[pi]++;for(var i=0;i<ch.length;i++){var idx=G.hands[pi].indexOf(ch[i]);if(idx>=0)G.hands[pi].splice(idx,1)}
-if(free)clearAllPlayed();showPlayed(pi,ch);render();if(!G.hands[pi].length){endRound(pi);return}G.currentPlayer=(pi+1)%3;setTimeout(function(){if(G.currentPlayer===0)showPlayBtns();else aiTurn()},800)}
+
+function aiTurn(){
+  if(G.phase!=='play')return;
+  var pi=G.currentPlayer, free=!G.lastPlay||G.lastPlayPlayer===pi;
+  var cs=findValid(G.hands[pi],free?null:G.lastPlay);
+  var ch = (cs.length>0) ? aiChoose(pi, cs, free) : null;
+
+  if(!ch){
+    G.passCount++;playSound('pass');showPlayed(pi,null);
+    if(G.passCount>=2){G.lastPlay=null;G.lastPlayPlayer=-1;G.passCount=0}
+    G.currentPlayer=(pi+1)%3;render();
+    setTimeout(function(){if(G.currentPlayer===0)showPlayBtns();else aiTurn()},600);
+    return;
+  }
+  var play=analyzeCards(ch);
+  if(play.type==='bomb'||play.type==='rocket'){G.bombCount++;playSound('bomb')}else playSound('play');
+  recordHistory(ch); /* 策略实现：记牌 - 记录电脑出的牌 */
+  G.lastPlay=play;G.lastPlayPlayer=pi;G.passCount=0;G.playedCounts[pi]++;
+  for(var i=0;i<ch.length;i++){var idx=G.hands[pi].indexOf(ch[i]);if(idx>=0)G.hands[pi].splice(idx,1)}
+  if(free)clearAllPlayed();showPlayed(pi,ch);render();
+  if(!G.hands[pi].length){endRound(pi);return}
+  G.currentPlayer=(pi+1)%3;
+  setTimeout(function(){if(G.currentPlayer===0)showPlayBtns();else aiTurn()},800)
+}
+
 function getCM(h){var c={};for(var i=0;i<h.length;i++){var v=h[i].value;if(!c[v])c[v]=[];c[v].push(h[i])}return c}
 function findValid(h,last){var r=[];if(!last){r=r.concat(fSing(h,null),fPair(h,null),fTrip(h,null))}else{if(last.type==='single')r=fSing(h,last);if(last.type==='pair')r=fPair(h,last);if(last.type==='triple')r=fTrip(h,last);r=r.concat(fBomb(h,null))}return r}
 function fSing(h,l){var r=[],s={},mn=l?l.rank:0;for(var i=0;i<h.length;i++){var v=h[i].value;if(v>mn&&!s[v]){s[v]=true;r.push([h[i]])}}return r}
