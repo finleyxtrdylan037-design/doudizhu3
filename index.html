@@ -144,14 +144,6 @@ html,body{width:100%;height:100%;min-height:100%;overflow:hidden;font-family:‘
   <div id="btnRow"></div>
   <div id="handBottom"></div>
   <div id="cheatBtn" onclick="toggleCheat()">&#128065;</div>
-  <!-- Start overlay -->
-  <div id="startOverlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;z-index:9999">
-    <div style="background:linear-gradient(145deg,#2a4a35,#1a3a25);border:2px solid #f0c040;border-radius:16px;padding:30px 40px;text-align:center;max-width:360px">
-      <h2 style="color:#f0c040;font-size:22px;margin:0 0 12px;letter-spacing:3px">斗 地 主</h2>
-      <p style="color:#ccc;margin:0 0 16px;font-size:14px">经典三人扑克游戏<br>具体规则看左上角</p>
-      <button onclick="beginGame()" style="background:#f0c040;color:#333;border:none;border-radius:20px;font-size:18px;padding:12px 40px;font-weight:700;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;touch-action:manipulation">开始游戏</button>
-    </div>
-  </div>
 </div>
 <script>
 window.onerror=function(msg,url,line){alert('JS Error: '+msg+' at line '+line);};
@@ -600,18 +592,9 @@ function closeResult(){var o=document.getElementById(‘resultOverlay’);if(o)o
 function showToast(m){var t=document.createElement(‘div’);t.className=‘toast’;t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},1200)}
 function showRules(){document.getElementById(‘rulesModal’).classList.add(‘show’)}
 function hideRules(){document.getElementById(‘rulesModal’).classList.remove(‘show’)}
-function showStart(){var o=document.getElementById(‘startOverlay’);if(o){o.style.display=’-webkit-flex’;o.style.display=‘flex’;}}
 function beginGame(){
-try{
-ensureAudio();
-}catch(e){}
-var o=document.getElementById(‘startOverlay’);
-if(o)o.style.display=‘none’;
-try{
+try{ensureAudio();}catch(e){}
 startGame();
-}catch(e){
-alert(‘startGame error: ‘+e.message+’ line:’+e.line);
-}
 }
 try{
 document.addEventListener(‘touchstart’,ensureAudio,false);
@@ -623,6 +606,7 @@ gh.style.height=ih+‘px’;
 document.body.style.height=ih+‘px’;
 }
 }catch(e){}
+startGame();
 </script>
 
 </body>
