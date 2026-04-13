@@ -55,7 +55,7 @@ html,body{width:100%;height:100%;min-height:100%;overflow:hidden;font-family:‘
 .dizhu-cards .card{width:42px;height:60px;cursor:default}
 .dizhu-cards .card .rank{font-size:13px}
 .dizhu-cards .card .suit{font-size:11px}
-.btn{padding:8px 22px;border:none;border-radius:20px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn{padding:8px 22px;border:none;border-radius:20px;font-size:14px;font-weight:700;cursor:pointer;-webkit-transition:all .2s;transition:all .2s;font-family:inherit;-webkit-appearance:none;appearance:none;touch-action:manipulation}
 .btn-primary{background:#f0c040;color:#333}
 .btn-primary:hover{background:#ffd060}
 .btn-secondary{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)}
@@ -145,11 +145,11 @@ html,body{width:100%;height:100%;min-height:100%;overflow:hidden;font-family:‘
   <div id="handBottom"></div>
   <div id="cheatBtn" onclick="toggleCheat()">&#128065;</div>
   <!-- Start overlay directly in HTML -->
-  <div class="overlay" id="startOverlay">
-    <div class="modal">
-      <h2 style="color:#f0c040;font-size:22px;margin-bottom:12px">斗 地 主</h2>
-      <p style="color:#ccc;margin-bottom:16px;font-size:14px">经典三人扑克游戏<br>具体规则看左上角</p>
-      <button class="btn btn-primary" onclick="beginGame()" style="font-size:18px;padding:12px 40px">开始游戏</button>
+  <div id="startOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;z-index:100">
+    <div style="background:linear-gradient(145deg,#2a4a35,#1a3a25);border:2px solid #f0c040;border-radius:16px;padding:30px 40px;text-align:center;max-width:360px">
+      <h2 style="color:#f0c040;font-size:22px;margin:0 0 12px;letter-spacing:3px">斗 地 主</h2>
+      <p style="color:#ccc;margin:0 0 16px;font-size:14px">经典三人扑克游戏<br>具体规则看左上角</p>
+      <button id="startBtn" style="background:#f0c040;color:#333;border:none;border-radius:20px;font-size:18px;padding:12px 40px;font-weight:700;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none">开始游戏</button>
     </div>
   </div>
 </div>
@@ -600,8 +600,21 @@ function closeResult(){var o=document.getElementById(‘resultOverlay’);if(o)o
 function showToast(m){var t=document.createElement(‘div’);t.className=‘toast’;t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},1200)}
 function showRules(){document.getElementById(‘rulesModal’).classList.add(‘show’)}
 function hideRules(){document.getElementById(‘rulesModal’).classList.remove(‘show’)}
-function showStart(){var o=document.getElementById(‘startOverlay’);if(o)o.style.display=’’;}
-function beginGame(){ensureAudio();var o=document.getElementById(‘startOverlay’);if(o){o.style.display=‘none’;}startGame()}
+function showStart(){var o=document.getElementById(‘startOverlay’);if(o)o.style.display=’-webkit-flex’;if(o)o.style.display=‘flex’;}
+function beginGame(){
+try{
+ensureAudio();
+var o=document.getElementById(‘startOverlay’);
+if(o)o.style.display=‘none’;
+startGame();
+}catch(e){alert(’beginGame error: ’+e.message);}
+}
+// Bind start button
+var sb=document.getElementById(‘startBtn’);
+if(sb){
+sb.addEventListener(‘click’,beginGame,false);
+sb.addEventListener(‘touchend’,function(e){e.preventDefault();beginGame();},false);
+}
 document.addEventListener(‘touchstart’,ensureAudio,{once:true});document.addEventListener(‘click’,ensureAudio,{once:true});
 // iOS iframe height fix
 function fixHeight(){
