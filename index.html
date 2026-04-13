@@ -144,8 +144,17 @@ html,body{width:100%;height:100%;min-height:100%;overflow:hidden;font-family:‘
   <div id="btnRow"></div>
   <div id="handBottom"></div>
   <div id="cheatBtn" onclick="toggleCheat()">&#128065;</div>
+  <!-- Start overlay directly in HTML -->
+  <div class="overlay" id="startOverlay">
+    <div class="modal">
+      <h2 style="color:#f0c040;font-size:22px;margin-bottom:12px">斗 地 主</h2>
+      <p style="color:#ccc;margin-bottom:16px;font-size:14px">经典三人扑克游戏<br>具体规则看左上角</p>
+      <button class="btn btn-primary" onclick="beginGame()" style="font-size:18px;padding:12px 40px">开始游戏</button>
+    </div>
+  </div>
 </div>
 <script>
+window.onerror=function(msg,url,line){alert('JS Error: '+msg+' at line '+line);};
 var audioCtx=null;
 function ensureAudio(){if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume()}
 function playSound(type){
@@ -591,8 +600,8 @@ function closeResult(){var o=document.getElementById(‘resultOverlay’);if(o)o
 function showToast(m){var t=document.createElement(‘div’);t.className=‘toast’;t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},1200)}
 function showRules(){document.getElementById(‘rulesModal’).classList.add(‘show’)}
 function hideRules(){document.getElementById(‘rulesModal’).classList.remove(‘show’)}
-function showStart(){var o=document.createElement(‘div’);o.className=‘overlay’;o.id=‘startOverlay’;o.innerHTML=’<div class="modal"><h2>\u6597 \u5730 \u4E3B</h2><p>\u7ECF\u5178\u4E09\u4EBA\u6251\u514B\u6E38\u620F<br>\u5177\u4F53\u89C4\u5219\u770B\u5DE6\u4E0A\u89D2</p><button class="btn btn-primary" onclick="beginGame()" style="font-size:18px;padding:12px 40px">\u5F00\u59CB\u6E38\u620F</button></div>’;document.getElementById(‘game’).appendChild(o)}
-function beginGame(){ensureAudio();var o=document.getElementById(‘startOverlay’);if(o)o.remove();startGame()}
+function showStart(){var o=document.getElementById(‘startOverlay’);if(o)o.style.display=’’;}
+function beginGame(){ensureAudio();var o=document.getElementById(‘startOverlay’);if(o){o.style.display=‘none’;}startGame()}
 document.addEventListener(‘touchstart’,ensureAudio,{once:true});document.addEventListener(‘click’,ensureAudio,{once:true});
 // iOS iframe height fix
 function fixHeight(){
