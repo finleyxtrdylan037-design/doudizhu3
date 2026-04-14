@@ -144,8 +144,11 @@ html,body{width:100%;height:100%;min-height:100%;overflow:hidden;font-family:‘
   <div id="btnRow"></div>
   <div id="handBottom"></div>
   <div id="cheatBtn" onclick="toggleCheat()">&#128065;</div>
+<div id="dbg" style="position:absolute;top:42px;left:0;right:0;background:rgba(0,0,0,.9);color:#0f0;font-size:11px;padding:4px 8px;z-index:99999;max-height:35%;overflow-y:auto;word-wrap:break-word">JS loading...</div>
 </div>
 <script>
+var _d=document.getElementById("dbg");function _log(m){if(_d)_d.textContent+="\n"+m;}
+_log("S1:script-start");
 
 var audioCtx=null;
 function ensureAudio(){if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(audioCtx&&audioCtx.state===‘suspended’)audioCtx.resume()}
@@ -161,6 +164,7 @@ case’bid’:osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.con
 case’select’:osc=audioCtx.createOscillator();gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);osc.type=‘sine’;osc.frequency.setValueAtTime(1200,t);gain.gain.setValueAtTime(.06,t);gain.gain.exponentialRampToValueAtTime(.001,t+.05);osc.start(t);osc.stop(t+.06);break;
 }
 }
+_log(“S2:after-playSound”);
 var RANKS=[‘3’,‘4’,‘5’,‘6’,‘7’,‘8’,‘9’,‘10’,‘J’,‘Q’,‘K’,‘A’,‘2’];
 var RV={};for(var i=0;i<RANKS.length;i++)RV[RANKS[i]]=i+3;RV[‘SJ’]=16;RV[‘BJ’]=17;
 var SUITS=[’\u2660’,’\u2665’,’\u2666’,’\u2663’];
@@ -173,6 +177,7 @@ playedRecord:[] // memory: all cards played this round
 };
 
 function createDeck(){var d=[];for(var r=0;r<RANKS.length;r++)for(var s=0;s<SUITS.length;s++)d.push({rank:RANKS[r],suit:SUITS[s],value:RV[RANKS[r]]});d.push({rank:’\u5C0F\u738B’,suit:’’,value:16,isJoker:‘small’});d.push({rank:’\u5927\u738B’,suit:’’,value:17,isJoker:‘big’});return d}
+_log(“S3:after-createDeck”);
 function shuffle(a){for(var i=a.length-1;i>0;i–){var j=0|Math.random()*(i+1);var t=a[i];a[i]=a[j];a[j]=t}}
 function sortHand(h){h.sort(function(a,b){return b.value-a.value||(SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit))})}
 
@@ -243,6 +248,7 @@ if(n===8){for(var k=0;k<ks.length;k++)if(ct[ks[k]]===4){var tc2=JSON.parse(JSON.
 return null}
 function canBeat(p,l){if(!l)return true;if(p.type===‘rocket’)return true;if(p.type===‘bomb’){if(l.type===‘rocket’)return false;if(l.type===‘bomb’)return p.rank>l.rank;return true}if(l.type===‘rocket’||l.type===‘bomb’)return false;if(p.type!==l.type||p.len!==l.len)return false;return p.rank>l.rank}
 
+_log(“S5:after-analyzeCards”);
 // ========== MEMORY SYSTEM ==========
 function getPlayedCount(value){
 var c=0;for(var i=0;i<G.playedRecord.length;i++)if(G.playedRecord[i]===value)c++;return c;
@@ -300,10 +306,12 @@ hands+=freeSingles+freePairs+bombs+(rocket?1:0);
 return hands;
 }
 
+_log(“S6:after-countHands”);
 // ========== UI ==========
 function toggleCard(idx){if(G.phase!==‘play’||G.currentPlayer!==0)return;G.hands[0][idx]._selected=!G.hands[0][idx]._selected;playSound(‘select’);render()}
 function toggleCheat(){G.cheat=!G.cheat;var b=document.getElementById(‘cheatBtn’);if(G.cheat)b.classList.add(‘active’);else b.classList.remove(‘active’);render()}
 
+_log(“S7:after-UI”);
 // ========== GAME FLOW ==========
 function startGame(){
 G.phase=‘bid’;G.deck=createDeck();shuffle(G.deck);G.hands=[[],[],[]];G.dizhuCards=[];G.dizhuIdx=-1;
@@ -593,7 +601,8 @@ function showRules(){document.getElementById(‘rulesModal’).classList.add(‘
 function hideRules(){document.getElementById(‘rulesModal’).classList.remove(‘show’)}
 function beginGame(){
 try{ensureAudio();}catch(e){}
-startGame();
+_log(“S8:calling-startGame”);
+try{startGame();_log(“S9:startGame-done”);}catch(e){_log(“ERR:”+e.message);}
 }
 try{
 document.addEventListener(‘touchstart’,ensureAudio,false);
@@ -605,8 +614,9 @@ gh.style.height=ih+‘px’;
 document.body.style.height=ih+‘px’;
 }
 }catch(e){}
-startGame();
+_log(“S8:calling-startGame”);
+try{startGame();_log(“S9:startGame-done”);}catch(e){_log(“ERR:”+e.message);}
 </script>
 
 </body>
-</html> 
+</html>
