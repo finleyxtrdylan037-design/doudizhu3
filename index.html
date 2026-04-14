@@ -146,6 +146,7 @@ html,body{width:100%;height:100%;min-height:100%;overflow:hidden;font-family:‘
   <div id="cheatBtn" onclick="toggleCheat()">&#128065;</div>
 </div>
 <script>
+alert('JS loaded OK');
 window.onerror=function(msg,url,line){alert('JS Error: '+msg+' at line '+line);};
 var audioCtx=null;
 function ensureAudio(){if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume()}
@@ -261,9 +262,8 @@ function recordPlay(cards){
 for(var i=0;i<cards.length;i++) G.playedRecord.push(cards[i].value);
 }
 
-// ========== HAND-COUNT (手数) ANALYSIS ==========
 function countHands(hand){
-// Estimate minimum number of “hands” (出牌次数) to play all cards
+
 // This is the core strategic metric in Dou Di Zhu
 var cm=getCM(hand);
 var vals=Object.keys(cm).map(Number).sort(function(a,b){return a-b});
